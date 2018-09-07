@@ -2,6 +2,7 @@
 
 ```
 docker build . -t fuzzing-tutorial --build-arg http_proxy=$http_proxy --build-arg https_proxy=$https_proxy
+echo core | sudo tee /proc/sys/kernel/core_pattern
 docker run  --cap-add SYS_PTRACE -it fuzzing-tutorial
 ```
 

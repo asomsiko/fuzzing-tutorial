@@ -24,6 +24,6 @@ RUN git clone http://github.com/openssl/openssl.git openssl_1_0_1f && \
     AFL_USE_ASAN=1 make
 
 # prepare challenges
-RUN git clone http://github.com/asomsiko/fuzzing_tutorial.git && \
-    cd fuzzing_tutorial/challenges/heartbleed/ && \
+RUN git clone http://github.com/asomsiko/fuzzing-tutorial.git && \
+    cd fuzzing-tutorial/challenges/heartbleed/ && \
     AFL_USE_ASAN=1 afl-clang-fast++ -g handshake.cc /work/openssl_1_0_1f/libssl.a /work/openssl_1_0_1f/libcrypto.a -o handshake -I /work/openssl_1_0_1f/include -ldl
