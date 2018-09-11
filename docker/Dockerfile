@@ -18,7 +18,7 @@ RUN apt-get update && \
 
 # install build tools
 RUN apt-get update && \
-    apt-get install -y git python-pip clang-6.0 clang++-6.0 gcc g++ afl
+    apt-get install -y git python3 python3-pip python-pip clang-6.0 clang++-6.0 gcc g++ afl
 
 # configure build tools
 RUN update-alternatives --install /usr/bin/llvm-symbolizer llvm-symbolizer /usr/bin/llvm-symbolizer-6.0 100
@@ -35,3 +35,9 @@ RUN git clone http://github.com/asomsiko/fuzzing-tutorial.git && \
     cd fuzzing-tutorial/challenges/heartbleed/ && \
     AFL_USE_ASAN=1 afl-clang-fast++ -g handshake.cc /work/openssl_1_0_1f/libssl.a /work/openssl_1_0_1f/libcrypto.a -o handshake -I /work/openssl_1_0_1f/include -ldl
 
+#ENV http_proxy qwert
+RUN git clone http://github.com/rc0r/afl-utils.git && \
+    cd afl-utils && \
+    git checkout tags/v1.33a && \
+    python3 setup.py install && \
+    echo "source /usr/lib/python3.6/site-packages/exploitable-1.32_rcor-py3.6.egg/exploitable/exploitable.py" >> ~/.gdbinit
