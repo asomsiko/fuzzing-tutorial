@@ -49,8 +49,14 @@ Notice it takes some time until it fund all crashes.
 Run 4 parallel fuzzing jobs
 ```
 afl-multicore -c workflow.conf start 4
-afl-whatsup out_multicore/
-
 ```
 
+Query current fuzzing status
+```
+afl-whatsup out_multicore
+```
 
+Collect crashes
+```
+afl-collect -d crashes.db -e gdb_scriptg -r -rr ./out_multicore/ ./findings -- ./app
+```

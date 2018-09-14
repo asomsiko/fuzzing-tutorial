@@ -18,7 +18,7 @@ RUN apt-get update && \
 
 # install build tools
 RUN apt-get update && \
-    apt-get install -y git python3 python3-pip python-pip clang-6.0 clang++-6.0 gcc g++ afl
+    apt-get install -y git python3 python3-pip python-pip clang-6.0 clang++-6.0 gcc g++ afl screen
 
 # configure build tools
 RUN update-alternatives --install /usr/bin/llvm-symbolizer llvm-symbolizer /usr/bin/llvm-symbolizer-6.0 100
